@@ -19,7 +19,7 @@ import (
 	"github.com/hashicorp/terraform-provider-aws/internal/errs/sdkdiag"
 )
 
-// @SDKResource("aws_ecs_account_setting_default", name="Account Setting Defauilt")
+// @SDKResource("aws_ecs_account_setting_default", name="Account Setting Default")
 func ResourceAccountSettingDefault() *schema.Resource {
 	return &schema.Resource{
 		CreateWithoutTimeout: resourceAccountSettingDefaultCreate,
@@ -77,7 +77,7 @@ func resourceAccountSettingDefaultCreate(ctx context.Context, d *schema.Resource
 	out, err := conn.PutAccountSettingDefaultWithContext(ctx, &input)
 
 	if err != nil {
-		return sdkdiag.AppendErrorf(diags, "creating ECS Account Setting Defauilt (%s): %s", settingName, err)
+		return sdkdiag.AppendErrorf(diags, "creating ECS Account Setting Default (%s): %s", settingName, err)
 	}
 	log.Printf("[DEBUG] Account Setting Default %s set", aws.StringValue(out.Setting.Value))
 
@@ -100,7 +100,7 @@ func resourceAccountSettingDefaultRead(ctx context.Context, d *schema.ResourceDa
 	resp, err := conn.ListAccountSettingsWithContext(ctx, input)
 
 	if err != nil {
-		return sdkdiag.AppendErrorf(diags, "reading ECS Account Setting Defauilt (%s): %s", d.Get("name").(string), err)
+		return sdkdiag.AppendErrorf(diags, "reading ECS Account Setting Default (%s): %s", d.Get("name").(string), err)
 	}
 
 	if len(resp.Settings) == 0 {
